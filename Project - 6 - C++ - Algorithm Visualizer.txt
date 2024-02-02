@@ -1,0 +1,222 @@
+Project - 6 - C++ - Algorithm Visualizer
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+#include <thread>
+
+// Function to display the current state of the array
+void displayArray(const std::vector<int>& arr) {
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+}
+
+// Function to perform bubble sort and visualize it
+void bubbleSort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            // Visualize the current state of the array
+            displayArray(arr);
+
+            // Add a delay to visualize the sorting process
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+            if (arr[j] > arr[j + 1]) {
+                std::swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+int main() {
+    // Initialize an array for visualization
+    std::vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+
+    // Display the initial state of the array
+    std::cout << "Initial Array: ";
+    displayArray(arr);
+    std::cout << "Press Enter to start sorting...";
+    std::cin.get();
+
+    // Perform Bubble Sort and visualize it
+    bubbleSort(arr);
+
+    // Display the sorted array
+    std::cout << "Sorted Array: ";
+    displayArray(arr);
+
+    return 0;
+}
+
+This example uses the Bubble Sort algorithm and displays the current state of the array during each step. 
+
+You can extend this project by adding more algorithms.
+
+--------------------------------------------------------------
+
+Explanation
+
+1. Header Inclusions:
+   
+   #include <iostream>
+   #include <vector>
+   #include <algorithm>
+   #include <chrono>
+   #include <thread>
+   
+   Here, we include necessary headers such as `iostream` for input/output, `vector` for dynamic arrays, `algorithm` for standard algorithms, and `chrono` and `thread` for timing purposes in visualizing the sorting process.
+
+--------------------------------------------------------------
+
+2. Function to Display Array:
+   
+   void displayArray(const std::vector<int>& arr) {
+       for (int num : arr) {
+           std::cout << num << " ";
+       }
+       std::cout << std::endl;
+   }
+   
+   This function takes a constant reference to a vector of integers and displays its contents on the console.
+
+--------------------------------------------------------------
+
+3. Function to Perform Bubble Sort and Visualize:
+   
+   void bubbleSort(std::vector<int>& arr) {
+       int n = arr.size();
+       for (int i = 0; i < n - 1; ++i) {
+           for (int j = 0; j < n - i - 1; ++j) {
+               displayArray(arr);
+               std::this_thread::sleep_for(std::chrono::milliseconds(100));
+               if (arr[j] > arr[j + 1]) {
+                   std::swap(arr[j], arr[j + 1]);
+               }
+           }
+       }
+   }
+   
+   This function implements the Bubble Sort algorithm. It iterates through the array, comparing adjacent elements and swapping them if they are in the wrong order. It also calls the `displayArray` function to visualize the current state of the array and adds a small delay to create a visible animation effect.
+
+--------------------------------------------------------------
+
+4. Main Function:
+   
+   int main() {
+       std::vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+       displayArray(arr);
+       std::cout << "Press Enter to start sorting...";
+       std::cin.get();
+       bubbleSort(arr);
+       std::cout << "Sorted Array: ";
+       displayArray(arr);
+       return 0;
+   }
+   
+   In the `main` function, we initialize an array, display its initial state, wait for the user to press Enter, call the `bubbleSort` function to visualize the sorting process, and finally display the sorted array.
+
+--------------------------------------------------------------
+
+5. Execution Flow:
+   - The program starts by displaying the initial state of the array.
+   - It then waits for the user to press Enter to initiate the sorting process.
+   - The Bubble Sort algorithm is performed, and the current state of the array is displayed with a slight delay between iterations to visualize the sorting.
+   - Finally, the sorted array is displayed.
+
+This example is a console-based visualizer, and you can extend and enhance it by incorporating graphical elements, additional algorithms, and user interface features for a more interactive experience.
+
+--------------------------------------------------------------
+
+Algorithm Visualizer Project Report
+
+
+1. Introduction
+
+1.1 Project Overview
+
+The Algorithm Visualizer project aims to provide a simple visualization of sorting algorithms using C++. The project focuses on implementing a console-based application that demonstrates the Bubble Sort algorithm.
+
+
+1.2 Objectives
+
+- Create a basic algorithm visualizer for educational purposes.
+- Demonstrate the steps of the Bubble Sort algorithm through console output.
+- Lay the foundation for future enhancements and algorithm additions.
+
+
+2. Implementation
+
+
+2.1 Technologies Used
+
+- C++ programming language
+- Standard Template Library (STL) for vectors
+- Chrono and Thread libraries for timing and visualization
+
+
+2.2 Code Overview
+
+The project consists of a main C++ file (`main.cpp`) that includes functions for displaying the array and performing the Bubble Sort algorithm with visualization. Key functions include `displayArray` and `bubbleSort`.
+
+
+2.3 Visual Representation
+
+The visualization is achieved by displaying the current state of the array at each step of the Bubble Sort algorithm. A small delay is introduced between steps to create a visual animation effect.
+
+
+3. Execution
+
+3.1 Initial Array
+
+The program begins by displaying the initial state of the array.
+
+
+Initial Array: 64 34 25 12 22 11 90
+
+
+3.2 Sorting Process
+
+The user is prompted to press Enter to start the sorting process. The Bubble Sort algorithm is executed, and the current state of the array is displayed at each step.
+
+3.3 Sorted Array
+
+After the sorting process is complete, the final sorted array is displayed.
+
+
+Sorted Array: 11 12 22 25 34 64 90
+
+
+4. Challenges Faced
+
+While implementing the project, a few challenges were encountered:
+
+Visualization Speed: 
+Adjusting the timing for visualization to make it informative without being too fast or slow.
+
+
+5. Future Enhancements
+
+The project can be extended and improved in several ways:
+
+Graphical User Interface (GUI): 
+Implement a graphical interface for a more interactive experience.
+
+Additional Algorithms:
+Include more sorting algorithms and allow users to choose which one to visualize.
+
+User Interaction:
+Allow users to input their own arrays and interact with the visualization.
+
+
+6. Conclusion
+
+The Algorithm Visualizer project provides a basic yet effective demonstration of sorting algorithms using C++. It serves as a starting point for more advanced features and algorithms in the future.
+--------------------------------------------------------------

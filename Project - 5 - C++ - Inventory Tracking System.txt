@@ -1,0 +1,216 @@
+Project - 5 - C++ - Inventory Tracking System
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
+
+class Product {
+public:
+    string name;
+    int quantity;
+    double price;
+
+    Product(string n, int q, double p) : name(n), quantity(q), price(p) {}
+};
+
+class Inventory {
+private:
+    vector<Product> products;
+
+public:
+    void addProduct(const Product& product) {
+        products.push_back(product);
+    }
+
+    void displayInventory() {
+        cout << setw(15) << "Product Name" << setw(15) << "Quantity" << setw(10) << "Price" << endl;
+        cout << setfill('-') << setw(40) << "" << setfill(' ') << endl;
+
+        for (const auto& product : products) {
+            cout << setw(15) << product.name << setw(15) << product.quantity << setw(10) << product.price << endl;
+        }
+    }
+
+    Product* findProduct(const string& productName) {
+        for (auto& product : products) {
+            if (product.name == productName) {
+                return &product;
+            }
+        }
+        return nullptr;
+    }
+
+    void updateQuantity(const string& productName, int newQuantity) {
+        Product* product = findProduct(productName);
+        if (product != nullptr) {
+            product->quantity = newQuantity;
+            cout << "Quantity updated successfully." << endl;
+        } else {
+            cout << "Product not found." << endl;
+        }
+    }
+};
+
+int main() {
+    Inventory inventory;
+
+    // Sample products
+    Product product1("Laptop", 10, 1200.0);
+    Product product2("Printer", 5, 300.0);
+
+    // Add products to the inventory
+    inventory.addProduct(product1);
+    inventory.addProduct(product2);
+
+    int choice;
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Display Inventory\n";
+        cout << "2. Update Quantity\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                inventory.displayInventory();
+                break;
+            case 2:
+                {
+                    string productName;
+                    int newQuantity;
+                    cout << "Enter product name: ";
+                    cin >> productName;
+                    cout << "Enter new quantity: ";
+                    cin >> newQuantity;
+                    inventory.updateQuantity(productName, newQuantity);
+                }
+                break;
+            case 3:
+                cout << "Exiting program.\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 3);
+
+    return 0;
+}
+
+--------------------------------------------------------------
+
+This is a simple console-based inventory tracking system. You can enhance it by adding features.
+
+--------------------------------------------------------------
+
+Explanation
+
+
+1. Header Inclusions:
+   
+   #include <iostream>
+   #include <vector>
+   #include <iomanip>
+   
+   This part includes necessary C++ libraries for input/output (`iostream`), handling dynamic arrays (`vector`), and formatting output (`iomanip`).
+
+--------------------------------------------------------------
+
+2. Product Class:
+   cpp
+   class Product {
+   public:
+       string name;
+       int quantity;
+       double price;
+
+       Product(string n, int q, double p) : name(n), quantity(q), price(p) {}
+   };
+   
+   This class represents a product in the inventory. It has attributes like name, quantity, and price. The constructor initializes these attributes when a new product is created.
+
+--------------------------------------------------------------
+
+3. Inventory Class:
+   
+   class Inventory {
+   private:
+       vector<Product> products;
+
+   public:
+       void addProduct(const Product& product) {
+           products.push_back(product);
+       }
+
+       void displayInventory() {
+           // Display the inventory in a tabular format
+           // (Uses setw to set the width of columns for better formatting)
+       }
+
+       Product* findProduct(const string& productName) {
+           // Find and return a pointer to a product by its name
+       }
+
+       void updateQuantity(const string& productName, int newQuantity) {
+           // Update the quantity of a product by its name
+       }
+   };
+
+   This class manages the inventory. It includes methods to add a product, display the inventory, find a product by name, and update the quantity of a product.
+
+--------------------------------------------------------------
+
+4. Main Function:
+
+   int main() {
+       Inventory inventory;
+
+       // Sample products
+       Product product1("Laptop", 10, 1200.0);
+       Product product2("Printer", 5, 300.0);
+
+       // Add products to the inventory
+       inventory.addProduct(product1);
+       inventory.addProduct(product2);
+
+       int choice;
+       do {
+           // Display menu and handle user input
+           // Switch-case is used to execute different actions based on user choice
+       } while (choice != 3);
+
+       return 0;
+   }
+
+   This is the main function. It creates an instance of the `Inventory` class, adds sample products to it, and then enters a loop to display a menu and process user input until the user chooses to exit.
+
+--------------------------------------------------------------
+
+5. Menu Handling:
+   
+   switch (choice) {
+       case 1:
+           inventory.displayInventory();
+           break;
+       case 2:
+           // Prompt the user for product name and new quantity, then update the inventory
+           break;
+       case 3:
+           // Exit the program
+           break;
+       default:
+           // Handle invalid choices
+   }
+
+   The switch-case statement handles different user choices from the menu.
+
+This code provides a basic structure for an inventory tracking system. 
+
+You can extend it by adding more features, error handling, and user-friendly interfaces based on your project requirements.
+
+--------------------------------------------------------------

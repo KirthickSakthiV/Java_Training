@@ -1,0 +1,249 @@
+C Project - 2 - Library Management System
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define a structure to represent a book
+struct Book {
+    char title[100];
+    char author[100];
+    int year;
+};
+
+// Function to add a book to the library
+void addBook(struct Book library[], int *numBooks) {
+    if (*numBooks < 100) {
+        printf("Enter book title: ");
+        scanf("%s", library[*numBooks].title);
+        
+        printf("Enter author name: ");
+        scanf("%s", library[*numBooks].author);
+        
+        printf("Enter publication year: ");
+        scanf("%d", &library[*numBooks].year);
+        
+        (*numBooks)++;
+        printf("Book added successfully!\n");
+    } else {
+        printf("Library is full. Cannot add more books.\n");
+    }
+}
+
+// Function to display details of all books in the library
+void displayBooks(struct Book library[], int numBooks) {
+    if (numBooks > 0) {
+        printf("Library Books:\n");
+        for (int i = 0; i < numBooks; i++) {
+            printf("Title: %s\n", library[i].title);
+            printf("Author: %s\n", library[i].author);
+            printf("Year: %d\n", library[i].year);
+            printf("---------------------------\n");
+        }
+    } else {
+        printf("No books in the library.\n");
+    }
+}
+
+// Function to search for a book by title
+void searchBook(struct Book library[], int numBooks, char title[]) {
+    int found = 0;
+    for (int i = 0; i < numBooks; i++) {
+        if (strcmp(library[i].title, title) == 0) {
+            printf("Book found!\n");
+            printf("Title: %s\n", library[i].title);
+            printf("Author: %s\n", library[i].author);
+            printf("Year: %d\n", library[i].year);
+            found = 1;
+            break;
+        }
+    }
+    
+    if (!found) {
+        printf("Book not found.\n");
+    }
+}
+
+int main() {
+    struct Book library[100]; // Maximum 100 books in the library
+    int numBooks = 0; // Number of books currently in the library
+
+    int choice;
+    char searchTitle[100];
+
+    do {
+        printf("\nLibrary Management System\n");
+        printf("1. Add a book\n");
+        printf("2. Display all books\n");
+        printf("3. Search for a book\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addBook(library, &numBooks);
+                break;
+            case 2:
+                displayBooks(library, numBooks);
+                break;
+            case 3:
+                printf("Enter the title of the book to search: ");
+                scanf("%s", searchTitle);
+                searchBook(library, numBooks, searchTitle);
+                break;
+            case 4:
+                printf("Exiting the program. Goodbye!\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+-------------------------------------------------
+
+Explanation
+
+1.
+Header Files
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+These are standard header files in C. `<stdio.h>` for input and output functions, `<stdlib.h>` for dynamic memory allocation functions (`malloc`, `free`), and `<string.h>` for string manipulation functions (`strcmp`).
+
+-------------------------------------------------
+
+2. 
+Structure Definition
+
+struct Book {
+    char title[100];
+    char author[100];
+    int year;
+};
+
+Defines a structure named `Book` to represent a book. It contains three members: `title` (string), `author` (string), and `year` (integer).
+
+-------------------------------------------------
+
+3. 
+Function to Add a Book
+
+void addBook(struct Book library[], int *numBooks) {
+    // ...
+}
+
+This function allows the user to input details for a new book and adds it to the library array.
+
+-------------------------------------------------
+
+4. 
+Function to Display Books
+
+void displayBooks(struct Book library[], int numBooks) {
+    // ...
+}
+
+This function displays details of all books in the library.
+
+-------------------------------------------------
+
+5. 
+Function to Search for a Book
+
+void searchBook(struct Book library[], int numBooks, char title[]) {
+    // ...
+}
+
+This function searches for a book by title in the library and displays its details if found.
+
+-------------------------------------------------
+
+6. 
+Main Function
+
+int main() {
+    // ...
+}
+
+The main function initializes the library array and variables. It then presents a menu-driven interface to the user, allowing them to choose between adding a book, displaying all books, searching for a book, or exiting the program.
+
+-------------------------------------------------
+
+7. 
+Menu-Driven Loop
+
+do {
+    // ...
+} while (choice != 4);
+
+A do-while loop that continues to display the menu until the user chooses to exit (option 4).
+
+-------------------------------------------------
+
+8. 
+Switch Statement
+
+switch (choice) {
+    // ...
+}
+
+Handles the user's choice by calling the appropriate function or displaying an error message for an invalid choice.
+
+-------------------------------------------------
+
+9. 
+Exit Condition
+
+case 4:
+    printf("Exiting the program. Goodbye!\n");
+    break;
+Exits the program when the user chooses option 4.
+
+-------------------------------------------------
+
+10. 
+Input/Output
+
+printf("Enter your choice: ");
+scanf("%d", &choice);
+Prompts the user for input and stores the choice in the `choice` variable.
+
+-------------------------------------------------
+
+11. 
+Error Handling
+
+default:
+    printf("Invalid choice. Please enter a valid option.\n");
+
+Handles cases where the user enters an invalid choice.
+
+-------------------------------------------------
+
+12. 
+Limitations
+
+The code has some limitations, such as a fixed array size for the library (100 books) and a lack of robust error handling. In a real-world application, you would need to handle edge cases more carefully.
+
+-------------------------------------------------
+
+13. 
+Structure Usage
+
+The `struct Book` structure is used to represent each book's data, allowing for a more organized and maintainable code structure.
+
+-------------------------------------------------
+
+
+
+
+
+

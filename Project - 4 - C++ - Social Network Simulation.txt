@@ -1,0 +1,354 @@
+Project - 4 - C++ - Social Network Simulation
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <ctime>
+
+// User class to represent a user in the social network
+class User {
+public:
+    std::string username;
+    std::vector<User*> friends;
+
+    User(const std::string& name) : username(name) {}
+
+    // Function to add a friend
+    void addFriend(User* friendUser) {
+        friends.push_back(friendUser);
+        friendUser->friends.push_back(this);
+    }
+
+    // Function to display user's friends
+    void displayFriends() const {
+        std::cout << "Friends of " << username << ":\n";
+        for (const auto& friendUser : friends) {
+            std::cout << "- " << friendUser->username << "\n";
+        }
+    }
+};
+
+// SocialNetwork class to manage users and their interactions
+class SocialNetwork {
+public:
+    std::vector<User> users;
+
+    // Function to add a new user to the network
+    void addUser(const std::string& name) {
+        users.emplace_back(name);
+    }
+
+    // Function to establish friendships between users
+    void establishFriendships() {
+        for (size_t i = 0; i < users.size(); ++i) {
+            for (size_t j = i + 1; j < users.size(); ++j) {
+                if (rand() % 2 == 0) {  // Randomly decide whether to be friends
+                    users[i].addFriend(&users[j]);
+                }
+            }
+        }
+    }
+};
+
+int main() {
+    srand(static_cast<unsigned>(time(0)));
+
+    // Create a social network
+    SocialNetwork socialNetwork;
+
+    // Add users to the network
+    socialNetwork.addUser("Alice");
+    socialNetwork.addUser("Bob");
+    socialNetwork.addUser("Charlie");
+    socialNetwork.addUser("David");
+    socialNetwork.addUser("Eve");
+
+    // Establish friendships between users
+    socialNetwork.establishFriendships();
+
+    // Display friends of each user
+    for (const auto& user : socialNetwork.users) {
+        user.displayFriends();
+        std::cout << "------------------------\n";
+    }
+
+    return 0;
+}
+
+This code provides a basic structure for a social network simulation. Users can be added to the network, friendships can be established randomly, and each user can display their friends.
+
+Keep in mind that a complete social network simulation involves more features, such as posting, messaging, notifications, and user interactions. You can expand and enhance this code based on your project requirements and goals. Additionally, you might want to consider using data structures like graphs to represent the relationships between users more efficiently.
+
+--------------------------------------------------------------
+
+Explanation
+
+1. User Class:
+
+class User {
+public:
+    std::string username;
+    std::vector<User*> friends;
+
+    User(const std::string& name) : username(name) {}
+
+    // Function to add a friend
+    void addFriend(User* friendUser) {
+        friends.push_back(friendUser);
+        friendUser->friends.push_back(this);
+    }
+
+    // Function to display user's friends
+    void displayFriends() const {
+        std::cout << "Friends of " << username << ":\n";
+        for (const auto& friendUser : friends) {
+            std::cout << "- " << friendUser->username << "\n";
+        }
+    }
+};
+
+
+This class represents a user in the social network. Each user has a username and a list of friends. The `addFriend` method is used to establish a mutual friendship between two users, and the `displayFriends` method is used to print the list of friends for a user.
+
+--------------------------------------------------------------
+
+2. SocialNetwork Class:
+
+class SocialNetwork {
+public:
+    std::vector<User> users;
+
+    // Function to add a new user to the network
+    void addUser(const std::string& name) {
+        users.emplace_back(name);
+    }
+
+    // Function to establish friendships between users
+    void establishFriendships() {
+        for (size_t i = 0; i < users.size(); ++i) {
+            for (size_t j = i + 1; j < users.size(); ++j) {
+                if (rand() % 2 == 0) {  // Randomly decide whether to be friends
+                    users[i].addFriend(&users[j]);
+                }
+            }
+        }
+    }
+};
+
+
+This class represents the social network itself. It contains a vector of users and has methods to add users to the network (`addUser`) and establish random friendships between users (`establishFriendships`). The friendships are established based on a random condition (in this case, using `rand() % 2 == 0`), simulating a basic way of determining whether two users become friends.
+
+--------------------------------------------------------------
+
+3. Main Function:
+
+int main() {
+    srand(static_cast<unsigned>(time(0)));
+
+    // Create a social network
+    SocialNetwork socialNetwork;
+
+    // Add users to the network
+    socialNetwork.addUser("Alice");
+    socialNetwork.addUser("Bob");
+    socialNetwork.addUser("Charlie");
+    socialNetwork.addUser("David");
+    socialNetwork.addUser("Eve");
+
+    // Establish friendships between users
+    socialNetwork.establishFriendships();
+
+    // Display friends of each user
+    for (const auto& user : socialNetwork.users) {
+        user.displayFriends();
+        std::cout << "------------------------\n";
+    }
+
+    return 0;
+}
+
+
+In the `main` function:
+- `srand(static_cast<unsigned>(time(0)))` initializes the random number generator based on the current time.
+- A `SocialNetwork` object is created.
+- Users are added to the network.
+- Friendships are established randomly between users.
+- The friends of each user are displayed using the `displayFriends` method.
+
+--------------------------------------------------------------
+
+4. Output:
+
+The output of the program will show the friends of each user based on the random friendships established:
+
+
+Friends of Alice:
+- Bob
+- Charlie
+- David
+- Eve
+------------------------
+Friends of Bob:
+- Alice
+- Charlie
+- Eve
+------------------------
+Friends of Charlie:
+- Alice
+- Bob
+------------------------
+Friends of David:
+- Alice
+- Eve
+------------------------
+Friends of Eve:
+- Alice
+- Bob
+- David
+------------------------
+
+--------------------------------------------------------------
+
+5. Future Enhancements:
+
+This basic social network simulation can be expanded by adding features such as posting, messaging, notifications, and more advanced friendship mechanisms. Additionally, incorporating a graph data structure to represent relationships more efficiently could be considered for larger-scale simulations. The provided code serves as a starting point that you can build upon based on your project requirements.
+
+
+-------------------------------------------------
+
+Social Network Simulation Project Report
+
+ 1. Introduction
+
+1.1 Project Overview
+
+The Social Network Simulation project is designed to create a simplified representation of a social network in C++. Users can be added to the network, and random friendships are established between them. The project serves as a starting point for more advanced social network simulations.
+
+
+1.2 Objectives
+
+ Implement a basic social network simulation in C++.
+
+ Represent users and friendships.
+
+ Visualize the connections between users.
+
+ Create a foundation for future enhancements.
+
+
+2. Implementation
+
+2.1 Technologies Used
+
+ C++ programming language
+ Standard Template Library (STL) for vectors
+
+ Random number generation for establishing friendships
+
+
+2.2 Code Overview
+
+User Class
+
+The `User` class represents a user in the social network. It includes a username, a list of friends, and methods to add friends and display the list of friends.
+
+
+class User {
+public:
+    std::string username;
+    std::vector<User*> friends;
+
+    User(const std::string& name) : username(name) {}
+
+    // Function to add a friend
+    void addFriend(User* friendUser) {
+        friends.push_back(friendUser);
+        friendUser->friends.push_back(this);
+    }
+
+    // Function to display user's friends
+    void displayFriends() const {
+        std::cout << "Friends of " << username << ":\n";
+        for (const auto& friendUser : friends) {
+            std::cout << "- " << friendUser->username << "\n";
+        }
+    }
+};
+
+
+SocialNetwork Class
+
+The `SocialNetwork` class manages the users in the network. It includes a vector of users and methods to add users, establish friendships, and visualize connections.
+
+
+class SocialNetwork {
+public:
+    std::vector<User> users;
+
+    // Function to add a new user to the network
+    void addUser(const std::string& name) {
+        users.emplace_back(name);
+    }
+
+    // Function to establish friendships between users
+    void establishFriendships() {
+        for (size_t i = 0; i < users.size(); ++i) {
+            for (size_t j = i + 1; j < users.size(); ++j) {
+                if (rand() % 2 == 0) {  // Randomly decide whether to be friends
+                    users[i].addFriend(&users[j]);
+                }
+            }
+        }
+    }
+};
+
+
+
+2.3 Visual Representation
+
+The social network simulation visually represents connections between users by displaying the friends of each user.
+
+
+3. Execution
+
+3.1 User Addition and Friendship Establishment
+
+Users are added to the network, and friendships are established randomly based on a probability condition.
+
+
+3.2 Visualization
+
+The program displays the friends of each user in the network. The output visually represents the connections between users.
+
+
+4. Output
+
+The output of the program shows the friends of each user based on the random friendships established.
+
+
+5. Future Enhancements
+
+The project can be extended and improved in several ways:
+
+ Graph Data Structure:
+ Implement a graph data structure for more efficient representation of user connections.
+ 
+ Advanced Features:
+ Add features such as posting, messaging, notifications, etc.
+ 
+ User Interaction:
+ Allow users to interact with the simulation, such as sending friend requests.
+
+
+6. Conclusion
+
+The Social Network Simulation project provides a basic representation of a social network in C++. It lays the foundation for more advanced features and enhancements to create a more realistic simulation.
+
+-------------------------------------------------
+
+Note: This is a basic template, and you may customize it based on your specific project details and requirements. Additionally, consider adding sections such as challenges faced, system requirements, installation instructions, and testing strategies depending on the complexity of your project.
+-------------------------------------------------
+
