@@ -1,0 +1,17 @@
+
+loop series  6,9,14,21,30..
+
+#include<stdio.h>
+int main()
+{
+    int n,i,j=3,value=6;
+    printf("Enter the range of number:");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        printf("%d ",value);
+        value+=j;
+        j+=2;
+    }
+}
+

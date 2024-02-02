@@ -1,0 +1,13 @@
+loop series 1,4,27,256,3125
+
+#include<stdio.h>
+int main()
+{
+    int n=5,i,p;
+    for(i=1;i<=n;i++)
+    {
+        p=pow(i,i);
+        printf("%d ",p);
+    }
+    return 0;
+}
