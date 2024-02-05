@@ -69,9 +69,6 @@ int main() {
     return 0;
 }
 
-This code provides a basic structure for a social network simulation. Users can be added to the network, friendships can be established randomly, and each user can display their friends.
-
-Keep in mind that a complete social network simulation involves more features, such as posting, messaging, notifications, and user interactions. You can expand and enhance this code based on your project requirements and goals. Additionally, you might want to consider using data structures like graphs to represent the relationships between users more efficiently.
 
 --------------------------------------------------------------
 
@@ -102,7 +99,6 @@ public:
 };
 
 
-This class represents a user in the social network. Each user has a username and a list of friends. The `addFriend` method is used to establish a mutual friendship between two users, and the `displayFriends` method is used to print the list of friends for a user.
 
 --------------------------------------------------------------
 
@@ -128,7 +124,7 @@ public:
 };
 
 
-This class represents the social network itself. It contains a vector of users and has methods to add users to the network (`addUser`) and establish random friendships between users (`establishFriendships`). The friendships are established based on a random condition (in this case, using `rand() % 2 == 0`), simulating a basic way of determining whether two users become friends.
+
 
 --------------------------------------------------------------
 
@@ -159,13 +155,6 @@ int main() {
     return 0;
 }
 
-
-In the `main` function:
-- `srand(static_cast<unsigned>(time(0)))` initializes the random number generator based on the current time.
-- A `SocialNetwork` object is created.
-- Users are added to the network.
-- Friendships are established randomly between users.
-- The friends of each user are displayed using the `displayFriends` method.
 
 --------------------------------------------------------------
 
