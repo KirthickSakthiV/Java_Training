@@ -10,7 +10,7 @@ Project - 6 - C++ - Algorithm Visualizer
 #include <chrono>
 #include <thread>
 
-// Function to display the current state of the array
+
 void displayArray(const std::vector<int>& arr) {
     for (int num : arr) {
         std::cout << num << " ";
@@ -18,15 +18,15 @@ void displayArray(const std::vector<int>& arr) {
     std::cout << std::endl;
 }
 
-// Function to perform bubble sort and visualize it
+
 void bubbleSort(std::vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {
-            // Visualize the current state of the array
+            
             displayArray(arr);
 
-            // Add a delay to visualize the sorting process
+        
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
             if (arr[j] > arr[j + 1]) {
@@ -37,19 +37,19 @@ void bubbleSort(std::vector<int>& arr) {
 }
 
 int main() {
-    // Initialize an array for visualization
+    
     std::vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
 
-    // Display the initial state of the array
+  
     std::cout << "Initial Array: ";
     displayArray(arr);
     std::cout << "Press Enter to start sorting...";
     std::cin.get();
 
-    // Perform Bubble Sort and visualize it
+    
     bubbleSort(arr);
 
-    // Display the sorted array
+    
     std::cout << "Sorted Array: ";
     displayArray(arr);
 
