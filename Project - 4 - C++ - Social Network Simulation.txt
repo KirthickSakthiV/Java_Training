@@ -8,7 +8,6 @@ Project - 4 - C++ - Social Network Simulation
 #include <string>
 #include <ctime>
 
-// User class to represent a user in the social network
 class User {
 public:
     std::string username;
@@ -16,13 +15,10 @@ public:
 
     User(const std::string& name) : username(name) {}
 
-    // Function to add a friend
     void addFriend(User* friendUser) {
         friends.push_back(friendUser);
         friendUser->friends.push_back(this);
     }
-
-    // Function to display user's friends
     void displayFriends() const {
         std::cout << "Friends of " << username << ":\n";
         for (const auto& friendUser : friends) {
@@ -31,17 +27,14 @@ public:
     }
 };
 
-// SocialNetwork class to manage users and their interactions
 class SocialNetwork {
 public:
     std::vector<User> users;
 
-    // Function to add a new user to the network
     void addUser(const std::string& name) {
         users.emplace_back(name);
     }
 
-    // Function to establish friendships between users
     void establishFriendships() {
         for (size_t i = 0; i < users.size(); ++i) {
             for (size_t j = i + 1; j < users.size(); ++j) {
@@ -56,20 +49,18 @@ public:
 int main() {
     srand(static_cast<unsigned>(time(0)));
 
-    // Create a social network
     SocialNetwork socialNetwork;
 
-    // Add users to the network
+    
     socialNetwork.addUser("Alice");
     socialNetwork.addUser("Bob");
     socialNetwork.addUser("Charlie");
     socialNetwork.addUser("David");
     socialNetwork.addUser("Eve");
 
-    // Establish friendships between users
     socialNetwork.establishFriendships();
 
-    // Display friends of each user
+    
     for (const auto& user : socialNetwork.users) {
         user.displayFriends();
         std::cout << "------------------------\n";
@@ -93,15 +84,15 @@ public:
     std::string username;
     std::vector<User*> friends;
 
-    User(const std::string& name) : username(name) {}
+    User(const std::string& name) : username(name) {
 
-    // Function to add a friend
+    }
     void addFriend(User* friendUser) {
         friends.push_back(friendUser);
         friendUser->friends.push_back(this);
     }
 
-    // Function to display user's friends
+
     void displayFriends() const {
         std::cout << "Friends of " << username << ":\n";
         for (const auto& friendUser : friends) {
@@ -120,13 +111,11 @@ This class represents a user in the social network. Each user has a username and
 class SocialNetwork {
 public:
     std::vector<User> users;
-
-    // Function to add a new user to the network
     void addUser(const std::string& name) {
         users.emplace_back(name);
     }
 
-    // Function to establish friendships between users
+    
     void establishFriendships() {
         for (size_t i = 0; i < users.size(); ++i) {
             for (size_t j = i + 1; j < users.size(); ++j) {
@@ -148,20 +137,20 @@ This class represents the social network itself. It contains a vector of users a
 int main() {
     srand(static_cast<unsigned>(time(0)));
 
-    // Create a social network
+    
     SocialNetwork socialNetwork;
 
-    // Add users to the network
+    
     socialNetwork.addUser("Alice");
     socialNetwork.addUser("Bob");
     socialNetwork.addUser("Charlie");
     socialNetwork.addUser("David");
     socialNetwork.addUser("Eve");
 
-    // Establish friendships between users
+    
     socialNetwork.establishFriendships();
 
-    // Display friends of each user
+    
     for (const auto& user : socialNetwork.users) {
         user.displayFriends();
         std::cout << "------------------------\n";
