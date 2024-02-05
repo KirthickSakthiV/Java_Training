@@ -212,8 +212,5 @@ Friends of Eve:
 
 --------------------------------------------------------------
 
-5. Future Enhancements:
-
-This basic social network simulation can be expanded by adding features such as posting, messaging, notifications, and more advanced friendship mechanisms. Additionally, incorporating a graph data structure to represent relationships more efficiently could be considered for larger-scale simulations. The provided code serves as a starting point that you can build upon based on your project requirements.
 
 
