@@ -1,0 +1,8 @@
+git clone url
+ls
+cd repository name
+code.
+git pull
+git status
+git add filename or git commit -am "commit name"
+git push
